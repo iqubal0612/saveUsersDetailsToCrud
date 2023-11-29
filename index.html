@@ -64,6 +64,27 @@ function saveToLocalStorage(event){
     })
 }
 
+window.addEventListener('DOMContentLoaded',()=>{
+
+    axios.get('https://crudcrud.com/api/3b19f25f03d545de9d7919aad97502b2/UsersData')
+    .then((res)=>{
+       for(var i=0;i<res.data.length;i++){
+        showUserOnScreen(res.data[i])
+       }
+    })
+
+    // const localStorageObj = localStorage;
+    // const localStorageKeys = Object.keys(localStorageObj);
+
+    // for(var i=0;i<localStorageKeys.length;i++){
+    //     const key = localStorageKeys[i];
+    //     const userDetailsString = localStorageObj[key];
+    //     const userDetailsObj = JSON.parse(userDetailsString);
+
+    //     showUserOnScreen(userDetailsObj);
+    // }
+})
+
 function showUserOnScreen(obj){
     const parentElement = document.getElementById('listOfItems');
     const childElement = document.createElement('li');
