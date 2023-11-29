@@ -134,6 +134,12 @@ function showUserOnScreen(obj){
         document.getElementById('email').value=obj.email;
         document.getElementById('phone').value=obj.number;
         })
+        .then(()=>{
+            axios.delete(`https://crudcrud.com/api/e107943b75734a25a5b0bad707c4cec5/UsersData/${id}`)
+            .then(()=>{
+                parentElement.removeChild(childElement);
+            })
+        })
         .catch((err)=>console.log(err))
     }
 
@@ -143,8 +149,6 @@ function showUserOnScreen(obj){
     //Append li to ul
     parentElement.appendChild(childElement)
 }
-
-
 
 </script>
 
