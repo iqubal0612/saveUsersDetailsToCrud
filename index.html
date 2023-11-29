@@ -54,7 +54,7 @@ function saveToLocalStorage(event){
     // localStorage.setItem(obj.email,JSON.stringify(email));
     // showUserOnScreen(obj);
 
-    axios.post('https://crudcrud.com/api/3b19f25f03d545de9d7919aad97502b2/UsersData',obj)
+    axios.post('https://crudcrud.com/api/e107943b75734a25a5b0bad707c4cec5/UsersData',obj)
     .then(res=>{
         showUserOnScreen(res.data)
         //console.log(res)
@@ -66,7 +66,7 @@ function saveToLocalStorage(event){
 
 window.addEventListener('DOMContentLoaded',()=>{
 
-    axios.get('https://crudcrud.com/api/3b19f25f03d545de9d7919aad97502b2/UsersData')
+    axios.get('https://crudcrud.com/api/e107943b75734a25a5b0bad707c4cec5/UsersData')
     .then((res)=>{
        for(var i=0;i<res.data.length;i++){
         showUserOnScreen(res.data[i])
@@ -106,7 +106,7 @@ function showUserOnScreen(obj){
         // localStorage.removeItem(obj.email);
         // parentElement.removeChild(childElement);
         const id = obj._id;
-        axios.delete(`https://crudcrud.com/api/3b19f25f03d545de9d7919aad97502b2/UsersData/${id}`)
+        axios.delete(`https://crudcrud.com/api/e107943b75734a25a5b0bad707c4cec5/UsersData/${id}`)
         .then(res=>{ 
             parentElement.removeChild(childElement);
         }).catch(err=>console.log(err))
@@ -114,11 +114,27 @@ function showUserOnScreen(obj){
 
     //Edit Button
     editBtn.onclick =()=>{
-        localStorage.removeItem(obj.email);
+        // localStorage.removeItem(obj.email);
+        // console.log(obj._id);
+        // parentElement.removeChild(childElement);
+        // document.getElementById('name').value=obj.name;
+        // document.getElementById('email').value=obj.email;
+        // document.getElementById('phone').value=obj.number;
+        const id = obj._id;
+        const updatedDetails = {
+             name: document.getElementById('name').value,
+             email: document.getElementById('email').value,
+             number: document.getElementById('phone').value
+            };
+    
+        axios.put(`https://crudcrud.com/api/e107943b75734a25a5b0bad707c4cec5/UsersData/${id}`,updatedDetails)
+        .then(()=>{
         parentElement.removeChild(childElement);
         document.getElementById('name').value=obj.name;
         document.getElementById('email').value=obj.email;
         document.getElementById('phone').value=obj.number;
+        })
+        .catch((err)=>console.log(err))
     }
 
     //Append delete & edit button to li
