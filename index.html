@@ -103,8 +103,13 @@ function showUserOnScreen(obj){
     
     //Delete Button
     dltBtn.onclick=()=>{
-        localStorage.removeItem(obj.email);
-        parentElement.removeChild(childElement);
+        // localStorage.removeItem(obj.email);
+        // parentElement.removeChild(childElement);
+        const id = obj._id;
+        axios.delete(`https://crudcrud.com/api/3b19f25f03d545de9d7919aad97502b2/UsersData/${id}`)
+        .then(res=>{ 
+            parentElement.removeChild(childElement);
+        }).catch(err=>console.log(err))
     }
 
     //Edit Button
