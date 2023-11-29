@@ -55,8 +55,13 @@ function saveToLocalStorage(event){
     // showUserOnScreen(obj);
 
     axios.post('https://crudcrud.com/api/3b19f25f03d545de9d7919aad97502b2/UsersData',obj)
-    .then(res=>console.log(res))
-    .catch(err=>console.log(err))
+    .then(res=>{
+        showUserOnScreen(res.data)
+        //console.log(res)
+    } )
+    .catch(err=>{
+        document.body.innerHTML = document.body.innerHTML+"<h4>Something went wrong</h4>"
+    })
 }
 
 function showUserOnScreen(obj){
